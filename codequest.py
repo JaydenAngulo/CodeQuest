@@ -88,13 +88,20 @@ decoded_phrase = []
 coded_letter = []
 
 for i, ch in enumerate(coded_message):
+    if ch != " " and coded_message[i+1] == " " and coded_message[i+2] == " " and coded_message[i+3] == " " and coded_message[i+4] == " ":
+        coded_letter.append(ch)
+        morse_letter = " ".join(coded_letter)
+        answer_letter = morse_to_letter[morse_letter]
+        decoded_phrase.append(answer_letter)
+        coded_letter.clear()
+        print(decoded_phrase)
     if ch == " " and coded_message[i+1] == " " or ch == " " and coded_message[i-1] == " ":
         if coded_message[i-2] == " " and coded_message[i-2] == " ":
             decoded_phrase.append(" ")
             continue
     else:
         coded_letter.append(ch)
-    if coded_message[i+1] and coded_message[i+2] and coded_message[i+3] == " " or i == len(coded_message) - 1:
+    if coded_message[i] and coded_message[i+1] and coded_message[i+2] and coded_message[i+3] == " " or i == len(coded_message) - 1:
         coded_letter.append(ch)
         morse_letter = " ".join(coded_letter)
         answer_letter = morse_to_letter[morse_letter]
