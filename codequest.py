@@ -172,37 +172,72 @@
 
 # Problem 6-20 points:
 
-tests = int(input("").strip())
-separator = ","
-employees = []
+# tests = int(input("").strip())
+# separator = ","
+# employees = []
 
-for case in range(tests):
-    timestamps = input("").strip()
-    employees.append(timestamps)
+# for case in range(tests):
+#     timestamps = input("").strip()
+#     employees.append(timestamps)
     
-for i in employees:
-    hours_list = i.split(',')
-    name = hours_list[0]
-    hours_list.pop(0)
-    total_hours = 0
-    total_minutes = 0
-    for day in hours_list:
-        hours_minutes = day.split(':')
-        hour = int(hours_minutes[0])
-        minutes = int(hours_minutes[1])
-        total_hours += hour
-        total_minutes += minutes
-        if total_minutes >= 60:
-            total_hours += 1
-            total_minutes -= 60
-    if total_hours == 1:
-        hour_plurality = "hour"
-    else:
-        hour_plurality = "hours"
+# for i in employees:
+#     hours_list = i.split(',')
+#     name = hours_list[0]
+#     hours_list.pop(0)
+#     total_hours = 0
+#     total_minutes = 0
+#     for day in hours_list:
+#         hours_minutes = day.split(':')
+#         hour = int(hours_minutes[0])
+#         minutes = int(hours_minutes[1])
+#         total_hours += hour
+#         total_minutes += minutes
+#         if total_minutes >= 60:
+#             total_hours += 1
+#             total_minutes -= 60
+#     if total_hours == 1:
+#         hour_plurality = "hour"
+#     else:
+#         hour_plurality = "hours"
 
-    if total_minutes == 1:
-        minute_plurality = "minute"
-    else:
-        minute_plurality = "minutes"
+#     if total_minutes == 1:
+#         minute_plurality = "minute"
+#     else:
+#         minute_plurality = "minutes"
 
-    print(f"{name}={total_hours} {hour_plurality} {total_minutes} {minute_plurality}")
+#     if total_hours == 0:
+#         print(f"{name}={total_minutes} {minute_plurality}")
+#         continue
+#     if total_minutes == 0:
+#         print(f"{name}={total_hours} {hour_plurality}")
+#     else:
+#         print(f"{name}={total_hours} {hour_plurality} {total_minutes} {minute_plurality}")
+
+# Problem 7-25 points:
+
+tests = int(input())
+
+for i in range(tests):
+    info = input().split()
+    diameter = int(info[0])
+    required_revolutions_per_wheel_rotation = int(info[1])
+    required_power_per_motor_revolution = int(info[2])
+    motor_revolutions_per_minute = int(info[3])
+    available_motor_capacity = int(info[4])
+    required_motor_voltage = int(info[5])
+    required_distance = int(info[6])
+    circumference = diameter * 3.14
+    required_wheel_rotations = (required_distance * 100) / circumference
+    total_required_motor_revolutions = required_revolutions_per_wheel_rotation * required_wheel_rotations
+    total_required_power = required_power_per_motor_revolution * total_required_motor_revolutions
+    contained_power = available_motor_capacity * required_motor_voltage
+    total_time = round((required_distance * 100) / (total_required_motor_revolutions * motor_revolutions_per_minute), 4)
+    
+print(contained_power)
+print(total_required_power)
+
+for i in range(tests):
+    if contained_power >= total_required_power:
+        print(f"Success {total_time}")
+    else:
+        print("Fail")
