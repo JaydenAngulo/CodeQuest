@@ -172,12 +172,37 @@
 
 # Problem 6-20 points:
 
-tests = int(input())
+tests = int(input("").strip())
 separator = ","
-employees = {}
+employees = []
 
-for _ in range(tests):
-    timestamps = input().split(separator)
-    for _ in range(len[timestamps] - 1):
-        if timestamps[0]
-    employees[timestamps[0]]
+for case in range(tests):
+    timestamps = input("").strip()
+    employees.append(timestamps)
+    
+for i in employees:
+    hours_list = i.split(',')
+    name = hours_list[0]
+    hours_list.pop(0)
+    total_hours = 0
+    total_minutes = 0
+    for day in hours_list:
+        hours_minutes = day.split(':')
+        hour = int(hours_minutes[0])
+        minutes = int(hours_minutes[1])
+        total_hours += hour
+        total_minutes += minutes
+        if total_minutes >= 60:
+            total_hours += 1
+            total_minutes -= 60
+    if total_hours == 1:
+        hour_plurality = "hour"
+    else:
+        hour_plurality = "hours"
+
+    if total_minutes == 1:
+        minute_plurality = "minute"
+    else:
+        minute_plurality = "minutes"
+
+    print(f"{name}={total_hours} {hour_plurality} {total_minutes} {minute_plurality}")
