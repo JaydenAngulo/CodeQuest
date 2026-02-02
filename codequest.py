@@ -232,12 +232,13 @@ for i in range(tests):
     total_required_power = required_power_per_motor_revolution * total_required_motor_revolutions
     contained_power = available_motor_capacity * required_motor_voltage
     total_time = round((required_distance * 100) / (total_required_motor_revolutions * motor_revolutions_per_minute), 4)
+    answer = {}
+    if contained_power >= total_required_power:
+        answer[i] = f"Success {total_time}"
+    else:
+        answer[i] = "Fail"
     
-print(contained_power)
-print(total_required_power)
+print(answer[1])
 
 for i in range(tests):
-    if contained_power >= total_required_power:
-        print(f"Success {total_time}")
-    else:
-        print("Fail")
+        print(answer.get(i))
